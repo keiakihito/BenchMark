@@ -114,6 +114,13 @@ const char* cusparseGetErrorString(cusparseStatus_t err) {
     } \
 } while (0)
 
+#define CHECK_MAGMA(call) do { \
+    magma_int_t err = call; \
+    if (err != MAGMA_SUCCESS) { \
+        fprintf(stderr, "MAGMA error at %s:%d: %d\n", __FILE__, __LINE__, err); \
+        exit(1); \
+    } \
+} while (0)
 
 
 #endif // CHEKS_H
